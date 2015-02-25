@@ -29,6 +29,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                       <ul class="nav navbar-nav">
                        <li class="active"><a href="/signup">Sign up</a></li>
+                       <li class="active"><a href="/login">Login</a></li>
                        <!-- <li><a href="#">Link</a></li>
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -66,7 +67,14 @@
                   </div><!-- /.container-fluid -->
                 </nav>	
 			</div>
-          
+          <?php //session_start();  ?>  
+          @if(isset($_SESSION['success_message']))
+           <div class="alert-success alert">{{$_SESSION['success_message']}}</div>
+          @endif
+           @if(isset($_SESSION['error_message']))
+           <div class="alert-danger alert">{{$_SESSION['error_message']}}</div>
+          @endif
+          <?php if(isset($_SESSION['success_message'])) unset($_SESSION['error_message']);if(isset($_SESSION['error_message'])) unset($_SESSION['error_message']);?>
            @yield('content')
             
 		</div>

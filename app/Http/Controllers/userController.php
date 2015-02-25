@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
+//use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+session_start();
 class userController extends Controller {
    
 	/*
@@ -32,19 +35,32 @@ class userController extends Controller {
 	{
 		$user= new User();
 	    $ruels=$user->rules;
-		$validator=Validator::make(Input::all(),$ruels,array("first_name.required"=>"hi"));
+		$validator=Validator::make(Input::all(),$ruels);
 		if($validator->fails())
 		{
-		 print_r($validator->errors()->first());
+		 $_SESSION['error_message']=$validator->errors()->first();
+		 return Redirect::to('/signup');
 		}
 		else
 		{
-			session_start();
+			
 			$_SESSION['message']='Sign up successfully';
 			$ar=Input::except("_token","password2");
 			$ar['password']=Hash::make('password');
 			User::insert($ar);
 			return Redirect::to('/');
+		}
+		
+	}
+	public function login()
+	{
+		if(Auth::attempt(Input::except('_token')))
+		{
+		  return Redirect('/');	
+		}
+		else
+		{  
+			echo "error";
 		}
 		
 	}
