@@ -30,6 +30,7 @@
                       <ul class="nav navbar-nav">
                        <li class="active"><a href="/signup">Sign up</a></li>
                        <li class="active"><a href="/login">Login</a></li>
+                       <li class="active"><a href="/post">Post</a></li>
                        <!-- <li><a href="#">Link</a></li>
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
