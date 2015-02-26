@@ -144,7 +144,8 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
-		'Illuminate\Html\HtmlServiceProvider'
+		'Illuminate\Html\HtmlServiceProvider',
+		'Illuminate\Hashing\HashServiceProvider',
 
 	],
 
@@ -194,7 +195,8 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Form'=> 'Illuminate\Html\FormFacade', 
-		'HTML'=> 'Illuminate\Html\HtmlFacade'
+		'HTML'=> 'Illuminate\Html\HtmlFacade',
+		'Hash' =>'Illuminate\Support\Facades\Hash',
 
 	],
 

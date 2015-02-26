@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
 //use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-session_start();
+use Illuminate\Support\Facades\Db;
 class userController extends Controller {
    
 	/*
@@ -45,7 +45,7 @@ class userController extends Controller {
 		{
 			
 			$_SESSION['message']='Sign up successfully';
-			$ar=Input::except("_token","password2");
+			$ar=Input::except("_token","confirm_password");
 			$ar['password']=Hash::make('password');
 			User::insert($ar);
 			return Redirect::to('/');
@@ -54,14 +54,7 @@ class userController extends Controller {
 	}
 	public function login()
 	{
-		if(Auth::attempt(Input::except('_token')))
-		{
-		  return Redirect('/');	
-		}
-		else
-		{  
-			echo "error";
-		}
+		
 		
 	}
 

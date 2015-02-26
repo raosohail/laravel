@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+session_start();
 Route::get('/', 'WelcomeController@index');
 Route::get('/signup', function(){
 	return view('signup');

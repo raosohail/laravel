@@ -22,6 +22,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	"last_name"  => "required",
 	"email" => "required|email|unique:users",
 	"password"=>"min:8",
+	"confirm_password"=>"required|same:password"
 	);
 
 	/**
@@ -35,7 +36,21 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
+	 
 	 */
-//	protected $hidden = ['password', 'remember_token'];
+	 	public function getAuthIdentifier()
+        {
+            return $this->getKey();
+         }
+/**
+* Get the password for the user.
+*
+* @return string
+*/
+         public function getAuthPassword()
+         {
+            return $this->password;
+         }
+          protected $hidden = ['password', 'remember_token'];
 
 }

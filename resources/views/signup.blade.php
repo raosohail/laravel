@@ -20,7 +20,7 @@
   </div>
   <div class="form-group">
     <label for="pwd">Re type Password:</label>
-    <input type="password" name="password2" class="form-control" id="pwd">
+    <input type="password" name="confirm_password" class="form-control" id="pwd">
   </div>
   <div class="checkbox">
     <label><input type="checkbox"> Remember me</label>
