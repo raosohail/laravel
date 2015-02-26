@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 use App\User;
+use App\Post;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -38,6 +39,7 @@ class userController extends Controller {
 		$validator=Validator::make(Input::all(),$ruels);
 		if($validator->fails())
 		{
+			//echo 'test here again';exit;
 		 $_SESSION['error_message']=$validator->errors()->first();
 		 return Redirect::to('/signup');
 		}
@@ -55,6 +57,19 @@ class userController extends Controller {
 	public function login()
 	{
 		
+		
+	}
+	public function post()
+	{
+		$post= new Post();
+	   
+		$_SESSION['message']='Post have been saved successfully';
+		//$ar=Input::except("_token","password2");
+		//$ar['password']=Hash::make('password');
+			
+		$input = Input::only('title', 'description');
+		Post::insert($input);
+		return Redirect::to('/');
 		
 	}
 
