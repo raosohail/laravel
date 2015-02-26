@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('content')
-<?php session_start();   
+<?php    
 /*@if(isset($_SESSION['message']))
 <div class="alert-success alert">{{$_SESSION['message']}}</div>
 @endif*/
