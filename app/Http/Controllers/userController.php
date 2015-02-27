@@ -39,16 +39,15 @@ class userController extends Controller {
 		$validator=Validator::make(Input::all(),$ruels);
 		if($validator->fails())
 		{
-			//echo 'test here again';exit;
 		 $_SESSION['error_message']=$validator->errors()->first();
 		 return Redirect::to('/signup');
 		}
 		else
 		{
 			
-			$_SESSION['message']='Sign up successfully';
+			$_SESSION['success_message']='Sign up successfully';
 			$ar=Input::except("_token","confirm_password");
-			$ar['password']=Hash::make('password');
+			$ar['password']=md5('password');
 			User::insert($ar);
 			return Redirect::to('/');
 		}
@@ -56,17 +55,29 @@ class userController extends Controller {
 	}
 	public function login()
 	{
+		$email=Input::get('email');
+		$password=md5(Input::get('password'));
+		$res=DB::table('users')->where('email','=',$email)
+		->where('password','=',$password)
+		->first();
+		if($res)
+		{
+			$user=User::find($res->uid);
+            Auth::login($user);
+			return Redirect::to('/'); 
+		}
+		else
+		{
+			$_SESSION['error_message']="Invalid user name or password";
+			return Redirect::to('/login');
+		}
 		
 		
 	}
 	public function post()
 	{
 		$post= new Post();
-	   
 		$_SESSION['message']='Post have been saved successfully';
-		//$ar=Input::except("_token","password2");
-		//$ar['password']=Hash::make('password');
-			
 		$input = Input::only('title', 'description');
 		Post::insert($input);
 		return Redirect::to('/');
